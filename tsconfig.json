@@ -3,25 +3,22 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "incremental": true,
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
+    "module": "esnext",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2017",
-    "module": "es2020",
+    "target": "es2015",
     "lib": [
       "es2018",
       "dom"
     ]
   },
-  "angularCompilerOptions": {
+  "angularCsompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
