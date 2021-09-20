@@ -25,7 +25,12 @@ export class RegisterComponent implements OnInit {
     this.initializeValues()
   }
 
-  initializeForm(): void {
+  onSubmit(): void {
+    const request: RegisterRequestInterface = { ...this.form.value };
+    this.store.dispatch(registerAction({ request }))
+  }
+
+  private initializeForm(): void {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       email: '',
@@ -33,13 +38,8 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  initializeValues(): void {
+  private initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-    this.backendErrors$ =this.store.pipe(select(validationErrorSelector));
-  }
-
-  onSubmit(): void {
-    const request: RegisterRequestInterface = { ...this.form.value };
-    this.store.dispatch(registerAction({ request }))
+    this.backendErrors$ = this.store.pipe(select(validationErrorSelector));
   }
 }
