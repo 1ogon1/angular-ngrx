@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { select, Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { AppStateInterface } from 'src/app/shared/types/appState.interface'
-import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface'
+import { Component, OnInit } from '@angular/core'
+import { select, Store } from '@ngrx/store'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+
 import { registerAction } from '../../store/actions/register.action'
-import { isSubmittingSelector, validationErrorSelector } from '../../store/selectors'
-import { AuthStateInterface } from '../../types/authState.interface'
 import { RegisterRequestInterface } from '../../types/registerRequest.interface'
+import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface'
+import { isSubmittingSelector, validationErrorSelector } from '../../store/selectors'
 
 @Component({
   selector: 'an-register',
@@ -26,7 +25,12 @@ export class RegisterComponent implements OnInit {
     this.initializeValues()
   }
 
-  initializeForm(): void {
+  onSubmit(): void {
+    const request: RegisterRequestInterface = { ...this.form.value };
+    this.store.dispatch(registerAction({ request }))
+  }
+
+  private initializeForm(): void {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       email: '',
@@ -34,16 +38,8 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  initializeValues(): void {
+  private initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-    this.backendErrors$ =this.store.pipe(select(validationErrorSelector));
-  }
-
-  onSubmit(): void {
-    console.log(this.form.value)
-    const request: RegisterRequestInterface = {
-      user: this.form.value
-    };
-    this.store.dispatch(registerAction({ request }))
+    this.backendErrors$ = this.store.pipe(select(validationErrorSelector));
   }
 }

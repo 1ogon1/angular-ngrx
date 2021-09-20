@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://my-angular-ngrx-api.herokuapp.com/api',
+  apiUrl: 'http://localhost:5000/api',
+  // apiUrl: 'https://rkonoval-api.herokuapp.com/api',
 }
 
 /*

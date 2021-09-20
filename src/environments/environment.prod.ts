@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://my-angular-ngrx-api.herokuapp.com/api',
+  apiUrl: 'https://rkonoval-api.herokuapp.com/api',
 }

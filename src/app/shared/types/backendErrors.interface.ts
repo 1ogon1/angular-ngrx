@@ -1,3 +1,9 @@
 export interface BackendErrorsInterface {
-    [key: string]: string[]
+    errors: BackendErrorItemInterface[]
+    message: string
+}
+
+export interface BackendErrorItemInterface {
+    type: string
+    messages: string[]
 }
