@@ -25,7 +25,7 @@ export class RegisterEffect {
         switchMap(({ request }) => {
             return this.authService.reggister(request).pipe(
                 map((currentUser: CurrentUserInterface) => {
-                    this.persistanceService.set<string>(AuthKeys.AccessToken, currentUser.token)
+                    this.persistanceService.set<string>(AuthKeys.AccessToken, `Bearer ${currentUser.token}`)
 
                     return registerSuccessAction({ currentUser })
                 }),

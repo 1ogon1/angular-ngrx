@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store'
 import { BrowserModule } from '@angular/platform-browser'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { AuthModule } from './auth/auth.module'
@@ -22,7 +23,10 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module'
     AuthModule,
     HttpClientModule,
     TopBarModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({
+      router: routerReducer
+    }),
+    StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

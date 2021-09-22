@@ -1,14 +1,22 @@
-import { ProfileInterface } from "./profile.interface";
-
 export interface Articleinterface {
-    author: ProfileInterface
+    id: string
+    slug: string
     title: string
     description: string
-    body: string
-    favorited: boolean
-    favoritesCount: number
-    slug: string
-    tagList: Array<string>
     createdAt: string
-    updatedAt: string
+    favorites: number
+    favorited: boolean
+    tagList: Array<ArticleTagInterface>
+    author: ArticleAuthorInterface
+}
+
+export interface ArticleAuthorInterface {
+    id: string
+    image: string
+    username: string
+}
+
+export interface ArticleTagInterface {
+    id: string
+    name: string
 }

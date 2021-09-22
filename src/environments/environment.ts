@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  limit: 2,
   production: false,
   apiUrl: 'http://localhost:5000/api',
   // apiUrl: 'https://rkonoval-api.herokuapp.com/api',
