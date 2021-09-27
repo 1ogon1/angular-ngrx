@@ -20,7 +20,7 @@
         <a [routerLink]="['/articles', article.slug]" class="preview-link">
             <h1>{{article.title}}</h1>
             <p>{{article.description}}</p>
-            <an-tags [tags]="article.tags"></an-tags>
+            <an-tags [tags]="article.tags" [outline]="true"></an-tags>
         </a>
     </div>
     <an-pagination

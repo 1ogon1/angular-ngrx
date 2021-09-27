@@ -1,0 +1,35 @@
+import { Action, createReducer, on } from '@ngrx/store';
+
+import { PopularTagsStateInterface } from '../types/popularTagsState.interface';
+import { getPopularTagsAction, getPopularTagsFailrueAction, getPopularTagsSuccessAction } from './actions/getPopularTags.action';
+
+const initialState: PopularTagsStateInterface = {
+    data: null,
+    error: null,
+    isLoading: false
+}
+
+const popularTagsReducer = createReducer(
+    initialState,
+
+    on(getPopularTagsAction, (state, action): PopularTagsStateInterface => ({
+        ...state,
+        isLoading: true,
+        error: null
+    })),
+
+    on(getPopularTagsSuccessAction, (state, action): PopularTagsStateInterface => ({
+        ...state,
+        isLoading: false,
+        data: action.popularTags
+    })),
+
+    on(getPopularTagsFailrueAction, (state): PopularTagsStateInterface => ({
+        ...state,
+        isLoading: false
+    }))
+)
+
+export function reducers(state: PopularTagsStateInterface, action: Action) {
+    return popularTagsReducer(state, action)
+}

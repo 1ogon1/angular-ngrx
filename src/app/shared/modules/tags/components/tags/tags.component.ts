@@ -9,4 +9,5 @@ import { ArticleTagInterface } from "src/app/shared/types/article.interface";
 })
 export class TagsComponent {
     @Input('tags') tagsProps: Array<ArticleTagInterface>
+    @Input('outline') outlineProps: boolean = false
 }

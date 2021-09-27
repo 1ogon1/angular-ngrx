@@ -1,11 +1,11 @@
 import { of } from "rxjs";
+import { Injectable } from "@angular/core";
 import { catchError, map, switchMap } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 import { FeedService } from "../../services/feed.service";
 import { GetFeedResponseInterface } from "../../types/getFeedResponse.interface";
 import { getFeedAction, getFeedFailureAction, getFeedSuccessAction } from "../actions/getFeed.action";
-import { Injectable } from "@angular/core";
 
 @Injectable()
 export class GetFeedEffect {
@@ -20,7 +20,7 @@ export class GetFeedEffect {
             return this.feedService.getFeed(url).pipe(
                 map((feed: GetFeedResponseInterface) => {
                     console.log(feed);
-                    
+
                     return getFeedSuccessAction({ feed })
                 }),
                 catchError(() => {

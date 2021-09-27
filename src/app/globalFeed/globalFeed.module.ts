@@ -1,10 +1,11 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { RouterModule, Routes } from "@angular/router";
-import { FeedModule } from "../shared/modules/feed/feed.module";
-import { BannerModule } from "../shared/modules/banner/banner.module";
-import { GlobalFeedComponent } from "./components/globalFeed/globalFeed.component";
+import { PopularTagsModule } from '../popularTags/popularTags.module';
+import { BannerModule } from '../shared/modules/banner/banner.module';
+import { FeedModule } from '../shared/modules/feed/feed.module';
+import { GlobalFeedComponent } from './components/globalFeed/globalFeed.component';
 
 const routes: Routes = [
     {
@@ -14,7 +15,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes), FeedModule, BannerModule],
+    imports: [CommonModule, RouterModule.forChild(routes), FeedModule, BannerModule, PopularTagsModule],
     declarations: [GlobalFeedComponent]
 })
 export class GlobalFeedModule { }
