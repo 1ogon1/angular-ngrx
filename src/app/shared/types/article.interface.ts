@@ -6,7 +6,7 @@ export interface Articleinterface {
     createdAt: string
     favorites: number
     favorited: boolean
-    tagList: Array<ArticleTagInterface>
+    tags: Array<ArticleTagInterface>
     author: ArticleAuthorInterface
 }
 

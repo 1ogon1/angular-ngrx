@@ -1,8 +1,8 @@
 import { Observable } from "rxjs";
 import { select, Store } from "@ngrx/store";
 import { parseUrl, stringify } from 'query-string'
-import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 
 import { environment } from "src/environments/environment";
 import { getFeedAction } from "../../store/actions/getFeed.action";
@@ -14,7 +14,7 @@ import { errorSelector, feedSelector, isLoadingSelector } from "../../store/sele
     templateUrl: './feed.component.html',
     styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnChanges {
     @Input('apiUrl') apiUrlProps: string
 
     isLoading$: Observable<boolean>
@@ -33,6 +33,13 @@ export class FeedComponent implements OnInit {
     ngOnInit(): void {
         this.initializeValues()
         this.initializeListeners()
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        // console.log(changes)
+        // if (!changes.apiUrlProps?.firstChange && changes.apiUrlProps.currentValue !== changes.apiUrlProps.previousValue) {
+        //     this.fetchFeed()
+        // }
     }
 
     toDate(date: string): string {
@@ -57,7 +64,7 @@ export class FeedComponent implements OnInit {
             ...url.query,
             page: this.currentPage
         })
-        
+
         this.store.dispatch(getFeedAction({ url: `${url.url}?${params}` }))
     }
 

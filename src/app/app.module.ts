@@ -9,7 +9,9 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
+import { TagFeedModule } from './tagFeed/tagFeed.module';
 import { environment } from 'src/environments/environment';
+import { YourFeedModule } from './yourFeed/yourFeed.module';
 import { GlobalFeedModule } from './globalFeed/globalFeed.module';
 import { TopBarModule } from './shared/modules/topBar/topBar.module';
 import { PersistanceService } from './shared/services/persistance.service';
@@ -18,26 +20,26 @@ import { AuthInterceptor } from './shared/services/authInterceptor.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     AuthModule,
-    HttpClientModule,
     TopBarModule,
-    StoreModule.forRoot({
-      router: routerReducer
-    }),
-    StoreRouterConnectingModule.forRoot(),
+    TagFeedModule,
+    BrowserModule,
+    YourFeedModule,
+    AppRoutingModule,
+    GlobalFeedModule,
+    HttpClientModule,
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
+    StoreModule.forRoot({ router: routerReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
-    }),
-    GlobalFeedModule
+    })
   ],
   providers: [PersistanceService, {
-    provide: HTTP_INTERCEPTORS,
+    multi: true,
     useClass: AuthInterceptor,
-    multi: true
+    provide: HTTP_INTERCEPTORS
   }],
   bootstrap: [AppComponent],
 })

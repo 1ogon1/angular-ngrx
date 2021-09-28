@@ -12,7 +12,7 @@ const initialState: PopularTagsStateInterface = {
 const popularTagsReducer = createReducer(
     initialState,
 
-    on(getPopularTagsAction, (state, action): PopularTagsStateInterface => ({
+    on(getPopularTagsAction, (state): PopularTagsStateInterface => ({
         ...state,
         isLoading: true,
         error: null

@@ -4,7 +4,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { PopularTagsService } from '../../services/popularTags.service';
-import { ArticleTagInterface } from 'src/app/shared/types/article.interface';
+import { GetPopularTagsResponseInterface } from '../../types/getPopularTagsResponse.interface';
 import { getPopularTagsAction, getPopularTagsFailrueAction, getPopularTagsSuccessAction } from '../actions/getPopularTags.action';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class GetPopularTagsEffect {
         ofType(getPopularTagsAction),
         switchMap(() => {
             return this.popularTagsService.getPopularTags().pipe(
-                map((popularTags: Array<ArticleTagInterface>) => {
+                map((popularTags: GetPopularTagsResponseInterface) => {
                     return getPopularTagsSuccessAction({ popularTags })
                 }),
                 catchError(() => {

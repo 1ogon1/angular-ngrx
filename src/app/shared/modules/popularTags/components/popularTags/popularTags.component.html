@@ -1,0 +1,8 @@
+<an-error-message *ngIf="error$ | async" [message]="error$ | async"></an-error-message>
+
+<an-loading *ngIf="isLoading$ | async"></an-loading>
+
+<div class="sidebar" *ngIf="tags$ | async">
+    <p>Popular Tags</p>
+    <an-tags [tags]="tags$ | async"></an-tags>
+</div>

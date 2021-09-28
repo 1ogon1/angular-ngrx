@@ -1,5 +1,5 @@
 import { AuthStateInterface } from "src/app/auth/types/authState.interface";
-import { PopularTagsStateInterface } from 'src/app/popularTags/types/popularTagsState.interface';
+import { PopularTagsStateInterface } from 'src/app/shared/modules/popularTags/types/popularTagsState.interface';
 import { FeedStateInteface } from "../modules/feed/types/feedState.interface";
 
 export interface AppStateInterface {
